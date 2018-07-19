@@ -55,68 +55,64 @@ exports.default = {
         } catch(err) {
             return({IsSuccess : false, message :`Date-${Date.now()}-redis SessionExistsRedis failed key-${key}`, exception :err });
         }
-
     },
     CreateRulesForTenant : function (namespace, obj, expiry = null){
-        try {
-            let value =  ratingManager.CreateRulesForTenant(namespace, obj, expiry);
+
+        ratingManager.CreateRulesForTenant(namespace, obj, expiry).then(function(value) {
             return ({IsSuccess : true, message :`Success`, value :value });
-        } catch(err) {
-            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :"Request Failed" });
-        }
+        }).catch(function(err) {
+            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :err })
+        });
     },
     CreateRulesForUser : function (namespace, userid, obj, expiry = null){
-        try {
-            let value =  ratingManager.CreateRulesForUser(namespace, userid, obj, userid, expiry);
+
+        ratingManager.CreateRulesForUser(namespace, userid, obj, userid, expiry).then(function(value) {
             return ({IsSuccess : true, message :`Success`, value :value });
-        } catch(err) {
-            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :"Request Failed" });
-        }
+        }).catch(function(err) {
+            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :err })
+        });
     },
     Rate : function (namespace, route, size, criteria, headers=null, username = "anonymous") {
-        try {
-            let value =  ratingManager.Rate(namespace, route, size, criteria, headers, username);
+
+        ratingManager.Rate(namespace, route, size, criteria, headers, username).then(function(value) {
             return ({IsSuccess : true, message :`Success`, value :value });
-        } catch(err) {
-            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :"Request Failed" });
-        }
+        }).catch(function(err) {
+            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :err })
+        });
     },
     validateWithRedis : function (key,size) {
-        try {
-            let value =  ratingManager.validateWithRedis(key, size);
+        ratingManager.validateWithRedis(key, size).then(function(value) {
             return ({IsSuccess : true, message :`Success`, value :value });
-        } catch(err) {
-            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${key}`, exception :"Request Failed" });
-        }
-        
+        }).catch(function(err) {
+            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${key}`, exception :err })
+        });
     },
     validate : function (namespace, type, size, criteria, username = "anonymous") {
-        try {
-            let value =  ratingManager.validate(namespace, type, size, criteria, username );
-            return ({IsSuccess : true, message :`Success`, value :value });
-        } catch(err) {
-            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :"Request Failed" });
-        }
 
+        ratingManager.validate(namespace, type, size, criteria, username ).then(function(value) {
+            return ({IsSuccess : true, message :`Success`, value :value });
+        }).catch(function(err) {
+            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :err })
+        });
     }
 
 
 };
 /*SendToQueue().then(function(exp){
-    console.log(exp);
-}).catch(function (err) {
-    console.log(JSON.stringify(err));
-});
-async function SendToQueue (){
-    try {
-        let value =  await  queueManager.publish('sdsdsdsd', 'this is a test');
-        console.log(value)
-        return ({IsSuccess : true, message :`Success`, value :value });
-    } catch(err) {
-        throw Error ({IsSuccess : false, message :`Failed`, exception :err });
-    }
+ console.log(exp);
+ }).catch(function (err) {
+ console.log(JSON.stringify(err));
+ });
+ async function SendToQueue (){
+ try {
+ let value =  await  queueManager.publish('sdsdsdsd', 'this is a test');
+ console.log(value)
+ return ({IsSuccess : true, message :`Success`, value :value });
+ } catch(err) {
+ throw Error ({IsSuccess : false, message :`Failed`, exception :err });
+ }
 
-}*/
+ }*/
 
 
 
