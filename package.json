@@ -1,0 +1,30 @@
+{
+  "name": "dbf-usagemanager",
+  "version": "1.0.0",
+  "description": "Connector to Rating Engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DuoSoftware/DBF-UsageManager.git"
+  },
+  "author": "V.M.K DE MEL",
+  "license": "ISC",
+  "maintainers": [
+    {
+      "name": "duosoftware",
+      "email": "kalana@duosoftware.com"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/DuoSoftware/DBF-UsageManager/issues"
+  },
+  "homepage": "https://github.com/DuoSoftware/DBF-UsageManager#readme",
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "config": "^1.30.0",
+    "ioredis": "^3.2.2"
+  }
+}
