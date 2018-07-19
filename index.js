@@ -56,44 +56,52 @@ exports.default = {
             return({IsSuccess : false, message :`Date-${Date.now()}-redis SessionExistsRedis failed key-${key}`, exception :err });
         }
     },
-    CreateRulesForTenant : function (namespace, obj, expiry = null){
+    CreateRulesForTenant : async function (namespace, obj, expiry = null){
 
-        ratingManager.CreateRulesForTenant(namespace, obj, expiry).then(function(value) {
+        try {
+            let value =  await ratingManager.CreateRulesForTenant(namespace, obj, expiry);
             return ({IsSuccess : true, message :`Success`, value :value });
-        }).catch(function(err) {
-            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :err })
-        });
-    },
-    CreateRulesForUser : function (namespace, userid, obj, expiry = null){
+        } catch(err) {
+            return({IsSuccess : false, message :`Date-${Date.now()}-Request Failed-${namespace}`, exception :err });
+        }
 
-        ratingManager.CreateRulesForUser(namespace, userid, obj, userid, expiry).then(function(value) {
-            return ({IsSuccess : true, message :`Success`, value :value });
-        }).catch(function(err) {
-            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :err })
-        });
     },
-    Rate : function (namespace, route, size, criteria, headers=null, username = "anonymous") {
+    CreateRulesForUser : async function (namespace, userid, obj, expiry = null){
 
-        ratingManager.Rate(namespace, route, size, criteria, headers, username).then(function(value) {
+        try {
+            let value =  await ratingManager.CreateRulesForUser(namespace, userid, obj, userid, expiry);
             return ({IsSuccess : true, message :`Success`, value :value });
-        }).catch(function(err) {
-            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :err })
-        });
-    },
-    validateWithRedis : function (key,size) {
-        ratingManager.validateWithRedis(key, size).then(function(value) {
-            return ({IsSuccess : true, message :`Success`, value :value });
-        }).catch(function(err) {
-            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${key}`, exception :err })
-        });
-    },
-    validate : function (namespace, type, size, criteria, username = "anonymous") {
+        } catch(err) {
+            return({IsSuccess : false, message :`Date-${Date.now()}-Request Failed-${namespace}`, exception :err });
+        }
 
-        ratingManager.validate(namespace, type, size, criteria, username ).then(function(value) {
+    },
+    Rate : async function (namespace, route, size, criteria, headers=null, username = "anonymous") {
+        try {
+            let value =  await ratingManager.Rate(namespace, route, size, criteria, headers, username);
             return ({IsSuccess : true, message :`Success`, value :value });
-        }).catch(function(err) {
-            return({IsSuccess : false, message :`Date-${Date.now()}-Failed for-${namespace}`, exception :err })
-        });
+        } catch(err) {
+            return({IsSuccess : false, message :`Date-${Date.now()}-Request Failed-${namespace}`, exception :err });
+        }
+
+    },
+    validateWithRedis : async function (key,size) {
+        try {
+            let value =  await ratingManager.validateWithRedis(key, size);
+            return ({IsSuccess : true, message :`Success`, value :value });
+        } catch(err) {
+            return({IsSuccess : false, message :`Date-${Date.now()}-Request Failed-${namespace}`, exception :err });
+        }
+
+    },
+    validate : async function (namespace, type, size, criteria, username = "anonymous") {
+        try {
+            let value =  await ratingManager.validate(namespace, type, size, criteria, username);
+            return ({IsSuccess : true, message :`Success`, value :value });
+        } catch(err) {
+            return({IsSuccess : false, message :`Date-${Date.now()}-Request Failed-${namespace}`, exception :err });
+        }
+
     }
 
 
