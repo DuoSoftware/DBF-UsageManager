@@ -11,7 +11,7 @@ let redis = new Redis();
 
 
 
-exports.default = {
+exports = {
 
     setToRedis : async function (key, value) {
         try {
@@ -97,7 +97,7 @@ exports.default = {
     validate : async function (namespace, type, size, criteria, username = "anonymous") {
         try {
             let value =  await ratingManager.validate(namespace, type, size, criteria, username);
-            if(value == true){
+            if(value === true){
                 return ({IsSuccess : true, message :`Success`, value :value });
             }
             else{
