@@ -1,6 +1,6 @@
 {
   "name": "dbf-usagemanager",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Connector to Rating Engine",
   "main": "index.js",
   "scripts": {

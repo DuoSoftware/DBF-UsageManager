@@ -97,7 +97,12 @@ exports.default = {
     validate : async function (namespace, type, size, criteria, username = "anonymous") {
         try {
             let value =  await ratingManager.validate(namespace, type, size, criteria, username);
-            return ({IsSuccess : true, message :`Success`, value :value });
+            if(value == true){
+                return ({IsSuccess : true, message :`Success`, value :value });
+            }
+            else{
+                return value
+            }
         } catch(err) {
             return({IsSuccess : false, message :`Date-${Date.now()}-Request Failed-${namespace}`, exception :err });
         }
@@ -106,21 +111,6 @@ exports.default = {
 
 
 };
-/*SendToQueue().then(function(exp){
- console.log(exp);
- }).catch(function (err) {
- console.log(JSON.stringify(err));
- });
- async function SendToQueue (){
- try {
- let value =  await  queueManager.publish('sdsdsdsd', 'this is a test');
- console.log(value)
- return ({IsSuccess : true, message :`Success`, value :value });
- } catch(err) {
- throw Error ({IsSuccess : false, message :`Failed`, exception :err });
- }
-
- }*/
 
 
 
