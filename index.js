@@ -11,7 +11,7 @@ let redis = new Redis();
 
 
 
-exports.default = {
+module.exports = {
 
     setToRedis : async function (key, value) {
         try {
