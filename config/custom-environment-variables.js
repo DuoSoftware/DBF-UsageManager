@@ -23,7 +23,7 @@ module.exports = {
             "password": "SYS_RABBITMQ_PASSWORD",
             "vhost":"SYS_RABBITMQ_VHOST"
         },
-    "ObjectSore" : {
+    "ObjectStore" : {
         "ip":"SYS_OBSTORE_HOST",
         "port":"SYS_OBSTORE_PORT",
         "protocol" : "SYS_OBSTORE_PROTOCOL"
